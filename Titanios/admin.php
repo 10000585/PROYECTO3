@@ -33,6 +33,9 @@ session_start();
 			function cerrar(){
 					window.location ='admin.php';
 			};
+			function nuevoUsuario(){
+				window.location ='admin.php?nuevoUsuario=true';
+			}
 		</script>    
 
 	  
@@ -144,6 +147,80 @@ session_start();
 
 <?php
 }
+	if(isset($_REQUEST['nuevoUsuario'])){
+?>
+
+
+<div class="estadistica">
+			<div class="encabCaja">
+
+				<div style="width: 95%; float:left;">
+					<font face="Helvetica" COLOR="white"><h3>Nuevo Usuario:</h3></font>
+				</div>
+				<div style="width: 5%;float:left; margin-top: 10px;">
+ 					<button style="margin-left: 40%; background-color: white;" onclick="cerrar();">X</button>
+ 				</div>
+			</div>
+			<div class="imgUsuario" style="background: url('img/imgUser.png') no-repeat;">
+			</div>
+
+			<div class="editUsuario">
+				<div class="encabCaja">
+					<h3> <font face="Helvetica" COLOR="white">Formulario de Registro de Usuario:</font></h3>
+				</div>
+			<form action="admin_creaUsuario_res.php" method="get" accept-charset="utf-8">
+					<div class="formGroup ">
+						USUARIO:
+						<input type="text" name="usu_usuario" value="">
+						<i class="fa fa-user"></i>
+					</div>
+					<div class="formGroup">
+						CONTRASEÑA: 
+						<input type="text" name="usu_pwd" value="">
+					</div>
+					<div class="formGroup">
+						CATEGORÍA:
+						<br/>
+						<div class="form-group" style="padding-left: 30px;">
+	
+							<input type="radio" name="usu_categoria" value="administrador" checked> Administrador
+							<input type="radio" name="usu_categoria" value="profesor"> Profesor
+
+
+						</div>
+					</div>
+					<div class="formGroup">
+						ESTADO:	
+						<br/>
+						<div class="form-group" style="padding-left: 30px;">
+	
+						<input type="radio" name="usu_estado" value="activo" checked> Activo
+						<input type="radio" name="usu_estado" value="inactivo"> Inactivo	
+		
+  						</div>
+  					</div>
+					<div id="oc" class="oculto" style="width: 100%; height: 40px; float: left; text-align: center;">
+<?php			
+	if($_REQUEST['creado']=='ok'){
+?>
+						<font face="Helvetica" COLOR="green">Usuario Creado correctamente</font>
+<?php			
+		}
+?>						
+					</div>
+				<div class="boton" style="padding-left: 10%; padding-right: 10%;">
+						<input type="submit" class="log-btn" name="submit">
+  				</div>
+  			</form>
+			</div>
+			
+</div>
+
+
+<?php
+}
+
+
 	if(isset($_REQUEST['usu_id'])){
 ?>
 
@@ -372,6 +449,10 @@ session_start();
 	    	<div class="encabCaja">
 					<font face="Helvetica" COLOR="white"><h3>USUARIOS:</h3></font>
 			</div>
+			<div style="margin-top: 20px; width: 90%; margin-left: 4%;">
+				<button type='button' class='log-btn' name='submit'  onclick="nuevoUsuario()" >NUEVO USUARIO</button>
+			</div>
+			
 			<table style="margin-top: 20px;">
 				<tr>
 					<th>Usuario</th>
